@@ -48,9 +48,10 @@ jobs:
           mkdocs build
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        id: deployment
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: site
-          user_name: 'GitHub Action'
-          user_email: 'action@github.com'
-          commit_message: 'Deploy documentation'
+          branch: gh-pages
+          git-config-name: "Github Action"
+          commit-message: "doc update for tag `${{ github.event.client_payload.tag || github.ref_name }}`"
