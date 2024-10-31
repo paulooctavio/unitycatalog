@@ -25,16 +25,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
+      - name: Setup Python Environment
         run: |
           python -m venv venv
           source venv/bin/activate
+          pip install --upgrade pip
+
+      - name: Install Documentation Dependencies
+        run: |
+          source venv/bin/activate
           pip install -r docs/requirements.txt
+
+      - name: Verify Installed Packages
+        run: |
+          source venv/bin/activate
+          echo "Verifying installed dependencies..."
+          pip list | grep -E 'mkdocs'
 
       - name: Build documentation
         run: |
