@@ -34,7 +34,7 @@ jobs:
       - name: Install Documentation Dependencies
         run: |
           source venv/bin/activate
-          pip install -r docs/requirements.txt
+          pip install -r ./requirements-docs.txt
 
       - name: Verify Installed Packages
         run: |
